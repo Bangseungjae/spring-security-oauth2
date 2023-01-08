@@ -5,29 +5,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Insert title here</title>
 </head>
-<script>
-    function authorizationCode() {
-        window.location = new URL('http://localhost:8081/oauth2/authorization/keycloak');
-    }
 
-    function authorizationCodeWithPKCE() {
-        window.location = new URL('http://localhost:8081/oauth2/authorization/keycloakWithPKCE');
-    }
-
-    function implicit() {
-        window.location = new URL('http://localhost:8081/oauth2/authorization/keycloak2');
-    }
-
-</script>
 <body>
-<div>Welcome</div>
-<div sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></div>
-<form sec:authorize="isAnonymous()" action="#">
-    <p><input type="button" onclick="authorizationCode()" value="AuthorizationCode Grant" />
-    <p><input type="button" onclick="authorizationCodeWithPKCE()" value="AuthorizationCode Grant with PKCE" />
-    <p><input type="button" onclick="implicit()" value="Implicit Grant" />
-</form>
+<div>OAuth2AuthenticationToken: <p><span th:text = "${OAuth2AuthenticationToken}" /></p></div>
+<div>Access Token: <p><span th:text = "${AccessToken}" /></p></div>
+<div>Refresh Token: <p><span th:text="${RefreshToken}" /></p></div>
+
+<div>
+    <a href="/logout">Logout</a>
+</div>
 </body>
 </html>

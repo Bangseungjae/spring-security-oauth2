@@ -1,4 +1,4 @@
-package io.security.oauth2.springsecurityoauth2;
+package io.security.oauth2.springsecurityoauth2.config;
 
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizationRequestResolver;

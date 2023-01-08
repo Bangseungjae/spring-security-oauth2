@@ -1,4 +1,4 @@
-package io.security.oauth2.springsecurityoauth2;
+package io.security.oauth2.springsecurityoauth2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

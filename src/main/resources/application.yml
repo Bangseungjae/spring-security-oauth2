@@ -12,35 +12,11 @@ spring:
             client-secret: KaUeVyCxo76S4M662vOw8NJ1NWNtAD0s
             client-name: oauth2-client-app
             authorization-grant-type: authorization_code
-            scope:
-              - openid
-              - profile
-            client-authentication-method: client_secret_basic # client id 와 secret을 base64로 인코딩한 값을 사용 - authorization헤더에
-            redirect-uri: http://localhost:8081/client
+            scope: openid,profile
+            client-authentication-method: client_secret_basic
+            redirect-uri: http://localhost:8081/login/oauth2/code/keycloak
             provider: keycloak
 
-#          keycloakWithPKCE:
-#            client-id: oauth2-client-app2
-#            client-secret: QbUw7W5lnOBRYZGlUDfYiDEfVJJArMxe
-#            client-name: oauth2-client-app2
-#            authorization-grant-type: authorization_code
-#            scope:
-#              - openid
-#              - profile
-#            client-authentication-method: client_secret_basic
-##            client-authentication-method: none
-#            redirect-uri: http://localhost:8081/login/oauth2/code/keycloak
-#            provider: keycloak
-#
-#          keycloak2:
-#            client-id: oauth2-client-app3
-#            client-secret:
-#            client-name: oauth2-client-app3
-#            authorization-grant-type: implicit
-#            scope: openid,profile
-#            client-authentication-method: none
-#            redirect-uri: http://localhost:8081/home
-#            provider: keycloak
 
         provider:
           keycloak:
