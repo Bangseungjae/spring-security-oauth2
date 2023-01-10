@@ -10,41 +10,30 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @Controller
 public class IndexController {
 
-    @Autowired
-//    private ClientRegistrationRepository clientRegistrationRepository;
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model, Authentication authentication,  @AuthenticationPrincipal OAuth2User oAuth2User){
+        OAuth2AuthenticationToken authenticationToken = (OAuth2AuthenticationToken)authentication;
+        if(authenticationToken != null){
+            Map<String, Object> attributes = oAuth2User.getAttributes();
+            String userName = (String)attributes.get("name");
+            if(authenticationToken.getAuthorizedClientRegistrationId().equals("naver")){
+                Map<String, Object> response = (Map)attributes.get("response");
+                userName = (String)response.get("name");
+                System.out.println("==========\n"+ oAuth2User.getAuthorities());
+            }
+            model.addAttribute("user", userName);
+        }
         return "index";
     }
 
-    @GetMapping("/user")
-    public OAuth2User user(Authentication authentication) {
-
-        //SecurityContext에 저장된 인증객체를 갖고온다.
-        OAuth2AuthenticationToken authentication1 = (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-
-        // 메서드에서 가져온 정보
-        OAuth2AuthenticationToken authentication2 = (OAuth2AuthenticationToken) authentication;
-        OAuth2User oAuth2User = authentication2.getPrincipal();
-        return oAuth2User;
-    }
-
-    @GetMapping("/oauth2User")
-    public OAuth2User oAuth2User(@AuthenticationPrincipal OAuth2User oAuth2User) {
-        System.out.println("oAuth2User = " + oAuth2User);
-        return oAuth2User;
-    }
-
-    @GetMapping("/oidcUser")
-    public OidcUser oAuth2User(@AuthenticationPrincipal OidcUser oidcUser) {
-        System.out.println("oidcUser = " + oidcUser);
-        return oidcUser;
-    }
 }
