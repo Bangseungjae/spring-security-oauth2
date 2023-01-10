@@ -47,6 +47,7 @@ public class OAuth2ClientConfig {
                         .oidcUserService(customOidcUserService)
         ));
 
+
 //        http.oauth2Client(Customizer.withDefaults());
         http.logout().logoutSuccessUrl("/");
 

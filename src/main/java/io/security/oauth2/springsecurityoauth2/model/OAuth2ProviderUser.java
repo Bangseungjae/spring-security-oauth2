@@ -1,5 +1,6 @@
 package io.security.oauth2.springsecurityoauth2.model;
 
+import io.security.oauth2.springsecurityoauth2.model.ProviderUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
@@ -11,7 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public abstract class OAuth2ProviderUser implements ProviderUser{
+public abstract class OAuth2ProviderUser implements ProviderUser {
 
     private OAuth2User oAuth2User;
 
@@ -23,6 +24,7 @@ public abstract class OAuth2ProviderUser implements ProviderUser{
         this.oAuth2User = oAuth2User;
         this.clientRegistration = clientRegistration;
     }
+
 
 
     @Override
